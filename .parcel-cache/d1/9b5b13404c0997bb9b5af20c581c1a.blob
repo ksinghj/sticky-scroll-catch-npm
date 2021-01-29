@@ -1,3 +1,0 @@
-const warnUser = () => {
-  console.warn('ARGHHH');
-};

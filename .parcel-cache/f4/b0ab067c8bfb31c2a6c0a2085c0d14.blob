@@ -1,8 +1,0 @@
-var errCodes;
-
-(function (errCodes) {
-  errCodes[errCodes["notFound"] = 404] = "notFound";
-  errCodes[errCodes["unknown"] = 405] = "unknown";
-})(errCodes || (errCodes = {}));
-
-console.log(errCodes.unknown);

@@ -1,3 +1,0 @@
-let list = [];
-list.push('Kartar');
-console.log(list[0]);
