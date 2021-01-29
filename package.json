@@ -4,8 +4,8 @@
     "parcel": "^2.0.0-beta.1"
   },
   "name": "sticky-scroll-catch",
-  "version": "1.0.5",
-  "main": "./build/index.js",
+  "version": "1.1.0",
+  "main": "index.js",
   "dependencies": {
     "abab": "^2.0.5",
     "abortcontroller-polyfill": "^1.7.1",
