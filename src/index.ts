@@ -61,10 +61,10 @@ const stickyScrollCatch = () => {
   }
 
   window.onscroll = function () {
-    // print "false" if direction is down and "true" if up
+    // print "false" if direction is down and "true" if up // creds IT VLOG https://stackoverflow.com/questions/31223341/detecting-scroll-direction
     scrollDirection = this.oldScroll > this.scrollY
     this.oldScroll = this.scrollY
   }
 }
 
-window.addEventListener('scroll', stickyScrollCatch)
+export default stickyScrollCatch
