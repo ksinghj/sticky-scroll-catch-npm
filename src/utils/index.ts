@@ -23,6 +23,7 @@ interface StatesConfig {
   SCROLL_DOWN_CATCH: string
   SCROLL_BREAK: string
   UPSCROLL: string
+  DOWNSCROLL: string
   SCROLL_TOP: string
   SCROLL_TOP_BREAK: string
 }
@@ -32,8 +33,9 @@ export const STATES: StatesConfig = {
   SCROLL_DOWN_CATCH: 'sticky-scroll-catch--scrolled',
   SCROLL_BREAK: 'sticky-scroll-catch--break',
   UPSCROLL: 'sticky-scroll-catch--upscroll',
+  DOWNSCROLL: 'sticky-scroll-catch--downscroll',
   SCROLL_TOP: 'sticky-scroll-catch--scrolled-top',
-  SCROLL_TOP_BREAK: 'sticky-scroll-catch--initial', // (same as INITIAL, just there for understanding)
+  SCROLL_TOP_BREAK: 'sticky-scroll-catch--initial',
 }
 
 export const setActiveState = (classToAdd: string, elm: HTMLElement): void => {

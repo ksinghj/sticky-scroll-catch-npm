@@ -1,6 +1,5 @@
 import { STATES, setActiveState, isElmScrolledBottom } from './utils'
-
-// TODO: debounce
+// import debounce from './utils/debounce'
 
 const target: HTMLElement = document.querySelector('.js-sticky-scroll-catch')
 const parent: HTMLElement = target.parentElement
@@ -11,7 +10,7 @@ let parentHeight: number = parent.offsetHeight
 let scrollDirection: boolean
 let isCatchPos: boolean = false
 
-window.addEventListener('scroll', () => {
+const stickyScrollCatch = () => {
   if (isElmScrolledBottom(target)) {
     setActiveState(STATES.SCROLL_DOWN_CATCH, target)
 
@@ -34,6 +33,15 @@ window.addEventListener('scroll', () => {
   }
 
   // handle scroll up and 'catch' so scrolls with window DOWNSCROLL catch
+  if (!scrollDirection && target.classList.contains('sticky-scroll-catch--scrolled-top') && !isCatchPos) {
+    let YAxisSpace = parentHeight - targetHeight
+    let topDistanceFromParent: number = target.getBoundingClientRect().top - parent.getBoundingClientRect().top
+    let bottomYAxisSpace: number = YAxisSpace - topDistanceFromParent
+
+    setActiveState(STATES.DOWNSCROLL, target)
+    target.style.bottom = `${bottomYAxisSpace}px`
+    isCatchPos = true
+  }
 
   if (!scrollDirection) isCatchPos = false
 
@@ -42,19 +50,17 @@ window.addEventListener('scroll', () => {
     setActiveState(STATES.SCROLL_TOP, target)
   }
 
-  if (parent.getBoundingClientRect().top == target.getBoundingClientRect().top) {
+  if (parent.getBoundingClientRect().top > 0) {
     setActiveState(STATES.INITAL, target)
   }
 
   console.log(parent.getBoundingClientRect().top == target.getBoundingClientRect().top)
-
-  if (!scrollDirection && target.classList.contains('sticky-scroll-catch--scrolled-top')) {
-    setActiveState(STATES.SCROLL_DOWN_CATCH, target)
-  }
 
   window.onscroll = function () {
     // print "false" if direction is down and "true" if up
     scrollDirection = this.oldScroll > this.scrollY
     this.oldScroll = this.scrollY
   }
-})
+}
+
+window.addEventListener('scroll', stickyScrollCatch)
