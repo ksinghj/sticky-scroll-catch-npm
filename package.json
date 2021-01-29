@@ -5,7 +5,7 @@
   },
   "name": "typescript",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.html",
   "dependencies": {
     "abab": "^2.0.5",
     "abortcontroller-polyfill": "^1.7.1",
