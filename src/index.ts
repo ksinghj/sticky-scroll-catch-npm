@@ -1,5 +1,6 @@
 import { STATES, setActiveState, isElmScrolledBottom } from './utils'
 // import debounce from './utils/debounce'
+import './index.css'
 
 const target: HTMLElement = document.querySelector('.js-sticky-scroll-catch')
 const parent: HTMLElement = target.parentElement
