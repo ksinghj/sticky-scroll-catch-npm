@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">LEFT</div>
+      <div class="center">RIGHT</div>
+      <div class="right">CENTER</div>
+    </div>
+
+    <script src="/sticky-scroll-catch.3f4cad87.js"></script>
+  </body>
+</html>

@@ -1,0 +1,3 @@
+let firstTuple = ['firstTuple str', 21];
+firstTuple.push(21, 2, 'kartar');
+console.log(firstTuple);

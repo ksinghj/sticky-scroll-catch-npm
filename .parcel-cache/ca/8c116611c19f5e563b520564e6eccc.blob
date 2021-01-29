@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript</title>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="sticky left padding border sticky-flex-fix">product images</div>
+      <div class="sticky center padding border sticky-flex-fix">main product images</div>
+      <div class="sticky right padding border sticky-flex-fix">product info</div>
+    </div>
+
+    <script src="17037ec637b4354f76be8aa7a66cd97d"></script>
+  </body>
+</html>

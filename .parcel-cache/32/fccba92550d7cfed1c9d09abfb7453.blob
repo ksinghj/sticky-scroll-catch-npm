@@ -1,0 +1,30 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.resetStyle = exports.isElmScrolledBottom = void 0;
+
+const isElmScrolledBottom = elm => {
+  let bottomScroll = window.scrollY + window.innerHeight;
+  let elmHeight = elm.offsetHeight;
+  let elmDistanceToTop = window.pageYOffset + elm.getBoundingClientRect().top;
+  const isScrolledToEnd = elmHeight + elmDistanceToTop < bottomScroll;
+  return isScrolledToEnd;
+};
+
+exports.isElmScrolledBottom = isElmScrolledBottom;
+
+const resetStyle = elm => {
+  elm.style.bottom = null;
+
+  for (let i = elm.classList.length - 1; i >= 0; i--) {
+    const className = elm.classList[i];
+
+    if (className.startsWith('ativo')) {
+      elm.classList.remove(className);
+    }
+  }
+};
+
+exports.resetStyle = resetStyle;

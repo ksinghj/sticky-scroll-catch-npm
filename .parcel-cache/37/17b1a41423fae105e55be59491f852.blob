@@ -1,0 +1,35 @@
+body {
+  font-family: sans-serif;
+}
+
+.padding {
+  padding: 50px 75px;
+}
+
+.border {
+  border: 2px solid;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+/* fix for sticky in flex */
+.sticky-flex-fix {
+  align-self: flex-start;
+}
+
+.left {
+  padding-bottom: 700px;
+  background: red;
+}
+.center {
+  padding-bottom: 1200px;
+  background: blue;
+}
+.right {
+  padding-bottom: 900px;
+  background: yellow;
+}

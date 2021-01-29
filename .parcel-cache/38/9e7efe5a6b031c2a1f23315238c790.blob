@@ -1,0 +1,16 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isElmScrolledBottom = void 0;
+
+const isElmScrolledBottom = elm => {
+  let bottomScroll = window.scrollY + window.innerHeight;
+  let elmHeight = elm.offsetHeight;
+  let elmDistanceToTop = window.pageYOffset + elm.getBoundingClientRect().top;
+  const isScrolledToEnd = elmHeight + elmDistanceToTop < bottomScroll;
+  return isScrolledToEnd;
+};
+
+exports.isElmScrolledBottom = isElmScrolledBottom;

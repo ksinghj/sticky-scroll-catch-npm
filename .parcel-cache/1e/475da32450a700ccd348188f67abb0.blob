@@ -1,0 +1,15 @@
+"use strict";
+
+var _utils = require("./utils");
+
+const stickyPdpInfo = document.querySelector('.product-sticky__info');
+const parent = stickyPdpInfo.parentElement;
+window.addEventListener('scroll', () => {
+  if ((0, _utils.isElmScrolledBottom)(stickyPdpInfo)) {
+    stickyPdpInfo.classList.add('js-sticky-pdp--scrolled');
+  }
+
+  if ((0, _utils.isElmScrolledBottom)(parent)) {
+    stickyPdpInfo.classList.add('js-sticky-pdp--end');
+  }
+});

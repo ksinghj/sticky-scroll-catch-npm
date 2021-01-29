@@ -1,0 +1,39 @@
+"use strict";
+
+var _utils = require("./utils");
+
+// TODO: debounce
+const target = document.querySelector('.sticky-scroll-catch');
+const parent = target.parentElement;
+let targetHeight = target.offsetHeight;
+let parentHeight = parent.offsetHeight;
+let YAxisSpace = parentHeight - targetHeight;
+let scrollDirection;
+window.addEventListener('scroll', () => {
+  console.log(YAxisSpace);
+
+  if ((0, _utils.isElmScrolledBottom)(target)) {
+    target.classList.add('sticky-scroll-catch--scrolled');
+  }
+
+  if ((0, _utils.isElmScrolledBottom)(parent)) {
+    target.classList.add('sticky-scroll-catch--break');
+  } // handle scroll up and 'catch' so scrolls with window
+
+
+  if (!(0, _utils.isElmScrolledBottom)(target) && scrollDirection) {
+    target.classList.remove('sticky-scroll-catch--scrolled');
+    target.classList.remove('sticky-scroll-catch--break'); // target.style.bottom = `${bottomYAxisSpace}px`
+    // target.classList.add('sticky-scroll-catch--upscroll')
+  }
+
+  if (!scrollDirection) {
+    target.classList.remove('sticky-scroll-catch--upscroll');
+  }
+
+  window.onscroll = function () {
+    // print "false" if direction is down and "true" if up
+    scrollDirection = this.oldScroll > this.scrollY;
+    this.oldScroll = this.scrollY;
+  };
+});

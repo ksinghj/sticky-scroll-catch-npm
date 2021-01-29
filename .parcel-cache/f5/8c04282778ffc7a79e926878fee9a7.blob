@@ -1,0 +1,13 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = () => {
+  console.log('logger ts');
+  console.log('imports work');
+};
+
+exports.default = _default;
