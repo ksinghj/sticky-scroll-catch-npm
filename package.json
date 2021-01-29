@@ -4,7 +4,7 @@
     "parcel": "^2.0.0-beta.1"
   },
   "name": "sticky-scroll-catch",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./build/index.js",
   "dependencies": {
     "abab": "^2.0.5",
@@ -531,7 +531,7 @@
     "xtend": "^4.0.2"
   },
   "scripts": {
-    "build": "parcel build ./src/index.ts"
+    "build": "parcel build ./src/main.js"
   },
   "keywords": [],
   "author": "Kartar Singh",
