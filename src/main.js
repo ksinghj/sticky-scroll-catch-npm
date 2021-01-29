@@ -5,17 +5,13 @@ var utils_1 = require("./utils");
 require("./index.css");
 var target = document.querySelector('.js-sticky-scroll-catch');
 var parent = target.parentElement;
-var targetHeight = target.offsetHeight;
-// let targetWidth: number = target.offsetWidth
-var parentHeight = parent.offsetHeight;
-// let parentWidth: number = parent.offsetWidth
-// TODO: calc width of parent - width of target
-// use that val as left: property for fixed and absolute pos
-// let leftSpace = parentWidth - targetWidth - target.getBoundingClientRect().left
-// target.style.left = `${leftSpace}px`
 var scrollDirection;
 var isCatchPos = false;
 var stickyScrollCatch = function () {
+    var targetHeight = target.offsetHeight;
+    // let targetWidth: number = target.offsetWidth
+    var parentHeight = parent.offsetHeight;
+    // let parentWidth: number = parent.offsetWidth
     if (utils_1.isElmScrolledBottom(target)) {
         utils_1.setActiveState(utils_1.STATES.SCROLL_DOWN_CATCH, target);
         if (scrollDirection)

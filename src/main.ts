@@ -5,19 +5,15 @@ import './index.css'
 const target: HTMLElement = document.querySelector('.js-sticky-scroll-catch')
 const parent: HTMLElement = target.parentElement
 
-let targetHeight: number = target.offsetHeight
-// let targetWidth: number = target.offsetWidth
-let parentHeight: number = parent.offsetHeight
-// let parentWidth: number = parent.offsetWidth
-// TODO: calc width of parent - width of target
-// use that val as left: property for fixed and absolute pos
-// let leftSpace = parentWidth - targetWidth - target.getBoundingClientRect().left
-// target.style.left = `${leftSpace}px`
-
 let scrollDirection: boolean
 let isCatchPos: boolean = false
 
 const stickyScrollCatch = () => {
+  let targetHeight: number = target.offsetHeight
+  // let targetWidth: number = target.offsetWidth
+  let parentHeight: number = parent.offsetHeight
+  // let parentWidth: number = parent.offsetWidth
+
   if (isElmScrolledBottom(target)) {
     setActiveState(STATES.SCROLL_DOWN_CATCH, target)
 
