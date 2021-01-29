@@ -39,33 +39,26 @@ body {
   position: relative;
 }
 
-/* TODO: remove 'right' values as they are only for this sandbox env */
-
 /* target scrolled to bottom */
 .sticky-scroll-catch--scrolled {
-  right: 8.3%;
   position: fixed;
   bottom: 0;
 }
 
 .sticky-scroll-catch--break {
-  right: 7.5%;
   position: absolute;
   bottom: 0;
 }
 
 .sticky-scroll-catch--upscroll {
-  right: 7.5%;
   position: absolute;
 }
 
 .sticky-scroll-catch--downscroll {
-  right: 7.5%;
   position: absolute;
 }
 
 .sticky-scroll-catch--scrolled-top {
   position: fixed;
   top: 0;
-  right: 8.3%;
 }
