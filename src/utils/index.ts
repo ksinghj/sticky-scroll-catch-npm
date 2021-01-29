@@ -40,7 +40,3 @@ export const setActiveState = (classToAdd: string, elm: HTMLElement): void => {
   resetStyle(elm)
   elm.classList.add(classToAdd)
 }
-
-// export const resetState = (elm: HTMLElement): void => {
-//   setActiveState(STATES.INITAL, elm)
-// }
