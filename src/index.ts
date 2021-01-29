@@ -1,4 +1,4 @@
-import { isElmScrolledBottom, resetStyle } from './utils'
+import { isElmScrolledBottom, resetStyle, STATES, setActiveState } from './utils'
 
 // TODO: debounce
 
@@ -12,10 +12,11 @@ let scrollDirection: boolean
 
 window.addEventListener('scroll', () => {
   if (isElmScrolledBottom(target)) {
-    target.classList.add('sticky-scroll-catch--scrolled')
+    setActiveState(STATES.SCROLL_DOWN_CATCH, target)
   }
+
   if (isElmScrolledBottom(parent)) {
-    target.classList.add('sticky-scroll-catch--break')
+    setActiveState(STATES.SCROLL_BREAK, target)
   }
 
   // handle scroll up and 'catch' so scrolls with window
@@ -24,25 +25,17 @@ window.addEventListener('scroll', () => {
     let topDistanceFromParent: number = target.getBoundingClientRect().top - parent.getBoundingClientRect().top
     let bottomYAxisSpace: number = YAxisSpace - topDistanceFromParent
 
-    target.classList.remove('sticky-scroll-catch--scrolled')
-    target.classList.remove('sticky-scroll-catch--break')
-
+    setActiveState(STATES.UPSCROLL, target)
     target.style.bottom = `${bottomYAxisSpace}px`
-    target.classList.add('sticky-scroll-catch--upscroll')
 
     // fix to top
     if (target.getBoundingClientRect().top > 0) {
-      target.classList.remove('sticky-scroll-catch--scrolled')
-      target.classList.remove('sticky-scroll-catch--break')
-      target.classList.remove('sticky-scroll-catch--upscroll')
-      target.classList.add('sticky-scroll-catch--scrolled-top')
-
-      //   resetStyle(target, 'sticky-scroll-catch')
+      setActiveState(STATES.SCROLL_TOP, target)
     }
   }
 
-  if (!scrollDirection) {
-    target.classList.remove('sticky-scroll-catch--upscroll')
+  if (parent.getBoundingClientRect().top >= target.getBoundingClientRect().top) {
+    setActiveState(STATES.INITAL, target)
   }
 
   window.onscroll = function () {
@@ -51,3 +44,11 @@ window.addEventListener('scroll', () => {
     this.oldScroll = this.scrollY
   }
 })
+
+// for (let i = target.classList.length - 1; i >= 0; i--) {
+//     const className = target.classList[i]
+//     if (className.startsWith('sticky-scroll-catch-')) {
+//       // setActiveState(STATES.INITAL, target)
+//       console.log(className)
+//     }
+//   }
