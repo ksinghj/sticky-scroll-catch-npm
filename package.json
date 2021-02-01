@@ -4,7 +4,7 @@
     "parcel": "^2.0.0-beta.1"
   },
   "name": "sticky-scroll-catch",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "main": "index.js",
   "dependencies": {
     "abab": "^2.0.5",
