@@ -9,7 +9,6 @@ export const isElmScrolledBottom = (elm: HTMLElement): boolean => {
 
 export const resetStyle = (elm: HTMLElement, classPrefix = 'sticky-scroll-catch'): void => {
   elm.style.bottom = null
-  elm.style.left = null
   for (let i = elm.classList.length - 1; i >= 0; i--) {
     const className = elm.classList[i]
     if (className.startsWith(classPrefix)) {
@@ -20,31 +19,83 @@ export const resetStyle = (elm: HTMLElement, classPrefix = 'sticky-scroll-catch'
 
 // when one state is active all others are not
 interface StatesConfig {
-  INITAL: string
-  SCROLL_DOWN_CATCH: string
-  SCROLL_BREAK: string
-  UPSCROLL: string
-  DOWNSCROLL: string
-  SCROLL_TOP: string
-  SCROLL_TOP_BREAK: string
+  INITAL: {
+    className: string,
+    position: string
+  }
+  SCROLL_DOWN_CATCH: {
+    className: string,
+    position: string
+  }
+  SCROLL_BREAK: {
+    className: string,
+    position: string
+  }
+  UPSCROLL: {
+    className: string,
+    position: string
+  }
+  DOWNSCROLL: {
+    className: string,
+    position: string
+  }
+  SCROLL_TOP: {
+    className: string,
+    position: string
+  }
+  SCROLL_TOP_BREAK: {
+    className: string,
+    position: string
+  }
 }
 
 export const STATES: StatesConfig = {
-  INITAL: 'sticky-scroll-catch--initial',
-  SCROLL_DOWN_CATCH: 'sticky-scroll-catch--scrolled',
-  SCROLL_BREAK: 'sticky-scroll-catch--break',
-  UPSCROLL: 'sticky-scroll-catch--upscroll',
-  DOWNSCROLL: 'sticky-scroll-catch--downscroll',
-  SCROLL_TOP: 'sticky-scroll-catch--scrolled-top',
-  SCROLL_TOP_BREAK: 'sticky-scroll-catch--initial',
+  INITAL: {
+    className: 'sticky-scroll-catch--initial',
+    position: ''
+  },
+  SCROLL_DOWN_CATCH: {
+    className: 'sticky-scroll-catch--scrolled',
+    position: 'fixed'
+  },
+  SCROLL_BREAK: {
+    className: 'sticky-scroll-catch--break',
+    position: 'absolute'
+  },
+  UPSCROLL: {
+    className: 'sticky-scroll-catch--upscroll',
+    position: 'absolute'
+  },
+  DOWNSCROLL: {
+    className: 'sticky-scroll-catch--downscroll',
+    position: 'absolute'
+  },
+  SCROLL_TOP: {
+    className: 'sticky-scroll-catch--scrolled-top',
+    position: 'fixed'
+  },
+  SCROLL_TOP_BREAK: {
+    className: 'sticky-scroll-catch--initial',
+    position: ''
+  },
 }
 
-export const setActiveState = (classToAdd: string, elm: HTMLElement): void => {
+export const setActiveState = (state: object, elm: HTMLElement): void => {
+  let targetLeftPos = calcLeftPos(elm)
   resetStyle(elm)
-  elm.classList.add(classToAdd)
+  if(state.position == 'fixed') {
+    elm.style.left = `${targetLeftPos.fixed}px`
+  } else if (state.position == 'absolute') {
+    elm.style.left = `${targetLeftPos.absolute}px`
+  } else {
+    elm.style.left = ''
+  }
+
+  elm.style.position = state.position
+  elm.classList.add(state.className)
 }
 
-export const calcLeftPos = (elm: HTMLElement) => {
+const calcLeftPos = (elm: HTMLElement) => {
   let left = elm.getBoundingClientRect().left
   let parentLeft = elm.parentElement.getBoundingClientRect().left
 

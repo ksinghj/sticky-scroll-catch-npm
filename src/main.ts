@@ -1,4 +1,4 @@
-import { STATES, setActiveState, isElmScrolledBottom, calcLeftPos } from './utils'
+import { STATES, setActiveState, isElmScrolledBottom } from './utils'
 import './index.css'
 
 const target: HTMLElement = document.querySelector('.js-sticky-scroll-catch')
@@ -7,22 +7,11 @@ const parent: HTMLElement = target.parentElement
 let scrollDirection: boolean
 let isCatchPos: boolean = false
 
-let targetLeftPos = calcLeftPos(target)
-
 const stickyScrollCatch = () => {
   let targetHeight: number = target.offsetHeight
   // let targetWidth: number = target.offsetWidth
   let parentHeight: number = parent.offsetHeight
   // let parentWidth: number = parent.offsetWidth
-
-  // handle x axis positioning
-  let targetPosAttr = window.getComputedStyle(target).position
-  if (targetPosAttr == 'fixed') {
-    target.style.left = `${targetLeftPos.fixed}px`;
-  } else if (targetPosAttr == 'absolute') {
-    target.style.left = `${targetLeftPos.absolute}px`
-  }
-
 
   if (isElmScrolledBottom(target)) {
     setActiveState(STATES.SCROLL_DOWN_CATCH, target)
@@ -65,13 +54,14 @@ const stickyScrollCatch = () => {
 
   if (parent.getBoundingClientRect().top > 0) {
     setActiveState(STATES.INITAL, target)
+    target.style.left = '' // in case existing styles are present (outside the module)
   }
+}
 
-  window.onscroll = function () {
+window.onscroll = function () {
     // print "false" if direction is down and "true" if up // creds IT VLOG https://stackoverflow.com/questions/31223341/detecting-scroll-direction
     scrollDirection = this.oldScroll > this.scrollY
     this.oldScroll = this.scrollY
   }
-}
 
 export default stickyScrollCatch
