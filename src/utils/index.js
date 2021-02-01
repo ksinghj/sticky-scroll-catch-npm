@@ -34,24 +34,13 @@ var setActiveState = function (classToAdd, elm) {
     elm.classList.add(classToAdd);
 };
 exports.setActiveState = setActiveState;
-function getPreviousSiblings(elem) {
-    var siblings = [];
-    while (elem = elem.previousSibling) {
-        if (elem.nodeType === 3)
-            continue; // text node
-        siblings.push(elem);
-    }
-    return siblings;
-}
-var reducer = function (accumulator, currentValue) { return accumulator + currentValue; };
 var calcLeftPos = function (elm) {
-    var targetPrevSiblings = getPreviousSiblings(elm);
-    var siblingWidths = targetPrevSiblings.map(function (sibling) { return sibling.getBoundingClientRect().width; });
-    var totalSiblingWidths = siblingWidths.reduce(reducer);
-    var containerOffsetLeft = elm.parentElement.getBoundingClientRect().left;
+    var left = elm.getBoundingClientRect().left;
+    var parentLeft = elm.parentElement.getBoundingClientRect().left;
+    var res = left - parentLeft;
     return {
-        fixed: totalSiblingWidths + containerOffsetLeft,
-        absolute: totalSiblingWidths
+        fixed: left,
+        absolute: res
     };
 };
 exports.calcLeftPos = calcLeftPos;
