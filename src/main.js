@@ -6,20 +6,11 @@ var target = document.querySelector('.js-sticky-scroll-catch');
 var parent = target.parentElement;
 var scrollDirection;
 var isCatchPos = false;
-var targetLeftPos = utils_1.calcLeftPos(target);
 var stickyScrollCatch = function () {
     var targetHeight = target.offsetHeight;
     // let targetWidth: number = target.offsetWidth
     var parentHeight = parent.offsetHeight;
     // let parentWidth: number = parent.offsetWidth
-    // handle x axis positioning
-    var targetPosAttr = window.getComputedStyle(target).position;
-    if (targetPosAttr == 'fixed') {
-        target.style.left = targetLeftPos.fixed + "px";
-    }
-    else if (targetPosAttr == 'absolute') {
-        target.style.left = targetLeftPos.absolute + "px";
-    }
     if (utils_1.isElmScrolledBottom(target)) {
         utils_1.setActiveState(utils_1.STATES.SCROLL_DOWN_CATCH, target);
         if (scrollDirection)
@@ -54,11 +45,12 @@ var stickyScrollCatch = function () {
     }
     if (parent.getBoundingClientRect().top > 0) {
         utils_1.setActiveState(utils_1.STATES.INITAL, target);
+        target.style.left = ''; // in case existing styles are present (outside the module)
     }
-    window.onscroll = function () {
-        // print "false" if direction is down and "true" if up // creds IT VLOG https://stackoverflow.com/questions/31223341/detecting-scroll-direction
-        scrollDirection = this.oldScroll > this.scrollY;
-        this.oldScroll = this.scrollY;
-    };
+};
+window.onscroll = function () {
+    // print "false" if direction is down and "true" if up // creds IT VLOG https://stackoverflow.com/questions/31223341/detecting-scroll-direction
+    scrollDirection = this.oldScroll > this.scrollY;
+    this.oldScroll = this.scrollY;
 };
 exports["default"] = stickyScrollCatch;

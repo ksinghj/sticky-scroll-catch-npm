@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.calcLeftPos = exports.setActiveState = exports.STATES = exports.resetStyle = exports.isElmScrolledBottom = void 0;
+exports.setActiveState = exports.STATES = exports.resetStyle = exports.isElmScrolledBottom = void 0;
 var isElmScrolledBottom = function (elm) {
     var bottomScroll = window.scrollY + window.innerHeight;
     var elmHeight = elm.offsetHeight;
@@ -12,7 +12,6 @@ exports.isElmScrolledBottom = isElmScrolledBottom;
 var resetStyle = function (elm, classPrefix) {
     if (classPrefix === void 0) { classPrefix = 'sticky-scroll-catch'; }
     elm.style.bottom = null;
-    elm.style.left = null;
     for (var i = elm.classList.length - 1; i >= 0; i--) {
         var className = elm.classList[i];
         if (className.startsWith(classPrefix)) {
@@ -22,17 +21,49 @@ var resetStyle = function (elm, classPrefix) {
 };
 exports.resetStyle = resetStyle;
 exports.STATES = {
-    INITAL: 'sticky-scroll-catch--initial',
-    SCROLL_DOWN_CATCH: 'sticky-scroll-catch--scrolled',
-    SCROLL_BREAK: 'sticky-scroll-catch--break',
-    UPSCROLL: 'sticky-scroll-catch--upscroll',
-    DOWNSCROLL: 'sticky-scroll-catch--downscroll',
-    SCROLL_TOP: 'sticky-scroll-catch--scrolled-top',
-    SCROLL_TOP_BREAK: 'sticky-scroll-catch--initial'
+    INITAL: {
+        className: 'sticky-scroll-catch--initial',
+        position: ''
+    },
+    SCROLL_DOWN_CATCH: {
+        className: 'sticky-scroll-catch--scrolled',
+        position: 'fixed'
+    },
+    SCROLL_BREAK: {
+        className: 'sticky-scroll-catch--break',
+        position: 'absolute'
+    },
+    UPSCROLL: {
+        className: 'sticky-scroll-catch--upscroll',
+        position: 'absolute'
+    },
+    DOWNSCROLL: {
+        className: 'sticky-scroll-catch--downscroll',
+        position: 'absolute'
+    },
+    SCROLL_TOP: {
+        className: 'sticky-scroll-catch--scrolled-top',
+        position: 'fixed'
+    },
+    SCROLL_TOP_BREAK: {
+        className: 'sticky-scroll-catch--initial',
+        position: ''
+    }
 };
-var setActiveState = function (classToAdd, elm) {
+var setActiveState = function (state, elm) {
+    var targetLeftPos = calcLeftPos(elm);
     exports.resetStyle(elm);
-    elm.classList.add(classToAdd);
+    if (state.position == 'fixed') {
+        elm.style.left = targetLeftPos.fixed + "px";
+    }
+    else if (state.position == 'absolute') {
+        elm.style.left = targetLeftPos.absolute + "px";
+    }
+    else {
+        elm.style.left = '';
+    }
+    elm.style.position = state.position;
+    elm.classList.add(state.className);
 };
 exports.setActiveState = setActiveState;
 var calcLeftPos = function (elm) {
@@ -44,4 +75,3 @@ var calcLeftPos = function (elm) {
         absolute: res
     };
 };
-exports.calcLeftPos = calcLeftPos;
