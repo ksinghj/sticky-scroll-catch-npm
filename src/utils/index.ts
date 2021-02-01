@@ -42,3 +42,25 @@ export const setActiveState = (classToAdd: string, elm: HTMLElement): void => {
   resetStyle(elm)
   elm.classList.add(classToAdd)
 }
+
+function getPreviousSiblings(elem: HTMLElement) {
+  var siblings = [];
+  while (elem = elem.previousSibling) {
+      if (elem.nodeType === 3) continue; // text node
+      siblings.push(elem);
+  }
+  return siblings;
+}
+
+const reducer = (accumulator: number, currentValue: number): number => accumulator + currentValue;
+
+export const calcLeftPos = (elm: HTMLElement) => {
+  let targetPrevSiblings = getPreviousSiblings(elm)
+  let siblingWidths = targetPrevSiblings.map(sibling => sibling.getBoundingClientRect().width)
+  let totalSiblingWidths = siblingWidths.reduce(reducer)
+  let containerOffsetLeft = elm.parentElement.getBoundingClientRect().left
+  return {
+    fixed: totalSiblingWidths + containerOffsetLeft,
+    absolute: totalSiblingWidths
+  }
+}

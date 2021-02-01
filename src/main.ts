@@ -1,5 +1,4 @@
-import { STATES, setActiveState, isElmScrolledBottom } from './utils'
-// import debounce from './utils/debounce'
+import { STATES, setActiveState, isElmScrolledBottom, calcLeftPos } from './utils'
 import './index.css'
 
 const target: HTMLElement = document.querySelector('.js-sticky-scroll-catch')
@@ -8,11 +7,22 @@ const parent: HTMLElement = target.parentElement
 let scrollDirection: boolean
 let isCatchPos: boolean = false
 
+let targetLeftPos = calcLeftPos(target)
+
 const stickyScrollCatch = () => {
   let targetHeight: number = target.offsetHeight
   // let targetWidth: number = target.offsetWidth
   let parentHeight: number = parent.offsetHeight
   // let parentWidth: number = parent.offsetWidth
+
+  // handle x axis positioning
+  let targetPosAttr = window.getComputedStyle(target).position
+  if (targetPosAttr == 'fixed') {
+    target.style.left = `${targetLeftPos.fixed}px`;
+  } else if (targetPosAttr == 'absolute') {
+    target.style.left = `${targetLeftPos.absolute}px`
+  }
+
 
   if (isElmScrolledBottom(target)) {
     setActiveState(STATES.SCROLL_DOWN_CATCH, target)
