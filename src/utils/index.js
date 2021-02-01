@@ -12,6 +12,7 @@ exports.isElmScrolledBottom = isElmScrolledBottom;
 var resetStyle = function (elm, classPrefix) {
     if (classPrefix === void 0) { classPrefix = 'sticky-scroll-catch'; }
     elm.style.bottom = null;
+    elm.style.left = null;
     for (var i = elm.classList.length - 1; i >= 0; i--) {
         var className = elm.classList[i];
         if (className.startsWith(classPrefix)) {

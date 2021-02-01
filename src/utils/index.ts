@@ -9,6 +9,7 @@ export const isElmScrolledBottom = (elm: HTMLElement): boolean => {
 
 export const resetStyle = (elm: HTMLElement, classPrefix = 'sticky-scroll-catch'): void => {
   elm.style.bottom = null
+  elm.style.left = null
   for (let i = elm.classList.length - 1; i >= 0; i--) {
     const className = elm.classList[i]
     if (className.startsWith(classPrefix)) {
