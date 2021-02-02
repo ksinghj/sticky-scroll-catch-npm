@@ -47,10 +47,10 @@ var stickyScrollCatch = function () {
         utils_1.setActiveState(utils_1.STATES.INITAL, target);
         target.style.left = ''; // in case existing styles are present (outside the module)
     }
-};
-window.onscroll = function () {
-    // print "false" if direction is down and "true" if up // creds IT VLOG https://stackoverflow.com/questions/31223341/detecting-scroll-direction
-    scrollDirection = this.oldScroll > this.scrollY;
-    this.oldScroll = this.scrollY;
+    window.onscroll = function () {
+        // print "false" if direction is down and "true" if up // creds IT VLOG https://stackoverflow.com/questions/31223341/detecting-scroll-direction
+        scrollDirection = this.oldScroll > this.scrollY;
+        this.oldScroll = this.scrollY;
+    };
 };
 exports["default"] = stickyScrollCatch;
